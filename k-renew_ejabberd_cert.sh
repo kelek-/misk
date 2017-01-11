@@ -15,12 +15,14 @@
 # certificate for ejabberd.                                            #
 #-----+                                                                #
 # Prerequisites:                                                       #
-#   - CertBot (github.link)                                            #
+#   - CertBot (https://github.com/certbot/certbot)                     #
 #   - BASH version 4.x                                                 #
-# NOTE: If you run an older version of BASH, you can the replace the   #
-# &> which was introduced with BASH 4 with the common 2&>1 - then it   #
+# NOTE: If you run an older version of BASH, you can replace the '>&', #
+# which was introduced with BASH 4, with the common '2&>1' - then it   #
 # *should* work with older BASH versions, however it's not tested -    #
-# please leave me a comment if you did so!                             #
+# please leave me a comment if you did so! Replacing of course         #
+# without ''. After that, you need to remove the check for the BASH    #
+# version, which you can find beginnig on line 161 to 165.             # 
 # Also note, that this script is BASH specific an therefor not POSIX   #
 # compliant.                                                           #
 #-----+                                                                #
@@ -34,7 +36,10 @@
 # to validate the certificate with LetsEncrypt. However, if you run a  #
 # webserver on your own, you can change the command line options to    #
 # place the files into your own webroot and validate it with           #
-# LetsEncrypt.                                                         #
+# LetsEncrypt. The variable you want to edit is:                       #
+#  -> 'CERTBOT_RENEW_COMMAND'                                          #
+# Refer to the CertBot manual to learn how to use your own webserver   #
+# to validate your certificate.                                        #
 #                                                                      #
 # Example crontab:                                                     #
 # 0 * 30 * * /root/k-renew_ejabberd_certificate.sh &> /dev/null        #
@@ -69,7 +74,7 @@ declare -r  EJABBERD_GROUP="ejabberd"                                   # Group 
 declare -r  EJABBERD_CERTIFICATE="/etc/ejabberd/ejabberd.pem"           # Path to the ejabberd.pem file (default /etc/ejabberd/ejabberd.pem)
 
 # <  --                       log settings                      --  >   #
-declare -r  LOG_LEVEL="DEBUG"                                           # Valid: DEBUG, INFO, WARNING, ERROR, NONE (this only affects the output to stdout - it will be logged to the file anway.)
+declare -r  LOG_LEVEL="INFO"                                            # Valid: DEBUG, INFO, WARNING, ERROR, NONE (this only affects the output to stdout - it will be logged to the file anway.)
 declare -r  LOG_DATE_FORMAT="%d.%m.%y %H:%m:%S"                         # See man date for help
 declare -r  LOG_FILE="/var/log/k-renew_ejjaber_certigicate.log"         # Logfile to write to
 

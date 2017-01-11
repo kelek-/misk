@@ -59,7 +59,7 @@
 
 
 # <  --                     certbot settings                    --  >   # 
-declare -r  CERTBOT_DOMAIN="horizon.homeunix.org"                       # Domain to renew
+declare -r  CERTBOT_DOMAIN=""                                           # Domain to renew
 declare -r  CERTBOT_WORK_DIRECTORY="/etc/letsencrypt/live"              # Work directory of the certbot (the folder where it stores the signed certificates (w/o domain) 
 declare -r  CERTBOT_DIRECTORY="/home/pi/sources/certbot"                # Git repo directory of the certbot (or where you have it saved)
 declare -r  CERTBOT_BINARY="certbot-auto"                               # Certbot binary name
